@@ -74,10 +74,10 @@ public class MyRectangle2D {
         // [2] = ylower
         // [3] = yupper
 
-        if (!((vertices[0] <= x) && (x <= vertices[1]) && (vertices[2] <= y) && (y <= vertices[3]))) {
-            return false;
-        } else {
+        if (((vertices[0] <= x) && (x <= vertices[1]) && (vertices[2] <= y) && (y <= vertices[3]))) {
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -95,19 +95,10 @@ public class MyRectangle2D {
         // define vertices of r
         double[] rvertices = getVertices(r);
 
-        boolean[] boolList = new boolean[4];
-
-        if (!containsPoint(vertices, rvertices[0], rvertices[1])) {
-            return false;
-        } else if (!containsPoint(vertices, rvertices[0], rvertices[2])) {
-            return false;
-        } else if (!containsPoint(vertices, rvertices[1], rvertices[2])) {
-            return false;
-        } else if (!containsPoint(vertices, rvertices[1], rvertices[3])) {
-            return false;
-        } else {
-            return true;
-        }
+        return containsPoint(vertices, rvertices[0], rvertices[2])
+                && containsPoint(vertices, rvertices[0], rvertices[1])
+                && containsPoint(vertices, rvertices[1], rvertices[2])
+                && containsPoint(vertices, rvertices[1], rvertices[3]);
     }
 
     public boolean overlaps(MyRectangle2D r) {
@@ -117,34 +108,10 @@ public class MyRectangle2D {
         // define vertices of r
         double[] rvertices = getVertices(r);
 
-        boolean[] boolList = new boolean[4];
-
-        if (containsPoint(vertices, rvertices[0], rvertices[1])) {
-            boolList[0] = true;
-        } else if (containsPoint(vertices, rvertices[0], rvertices[2])) {
-            boolList[1] = true;
-        } else if (containsPoint(vertices, rvertices[1], rvertices[2])) {
-            boolList[2] = true;
-        } else if (containsPoint(vertices, rvertices[1], rvertices[3])) {
-            boolList[3] = true;
-        }
-
-        int sumTrue = 0;
-        int sumFalse = 0;
-
-        for (boolean bool : boolList) {
-            if (bool) {
-                sumTrue += 1;
-            } else {
-                sumFalse += 1;
-            }
-        }
-
-        if (sumTrue >= 1 && sumFalse >= 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return containsPoint(vertices, rvertices[0], rvertices[2])
+                || containsPoint(vertices, rvertices[0], rvertices[3])
+                || containsPoint(vertices, rvertices[1], rvertices[2])
+                || containsPoint(vertices, rvertices[1], rvertices[3]);
     }
 
 }
