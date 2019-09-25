@@ -9,7 +9,7 @@ public class Account {
 
     private int id = 0;
     private double balance = 0;
-    private double annualInterestRate = 0;
+    private static double annualInterestRate = 0;
     private Date dateCreated;
 
     public Account() {
@@ -37,19 +37,19 @@ public class Account {
     }
 
     public double getAnnualInterestRate() {
-        return this.annualInterestRate;
+        return Account.annualInterestRate;
     }
 
-    public void setAnnualInterestRate(double annualInterestRate) {
-        this.annualInterestRate = annualInterestRate;
+    public static void setAnnualInterestRate(double annualInterestRate) {
+        Account.annualInterestRate = annualInterestRate;
     }
 
-    public double getMonthlyInterestRate() {
-        return this.annualInterestRate / 12;
+    public static double getMonthlyInterestRate() {
+        return Account.annualInterestRate / 12;
     }
 
     public double getMonthlyInterest() {
-        return getMonthlyInterestRate() * this.balance / 100;
+        return getMonthlyInterestRate() * balance / 100;
     }
 
     public void withdraw(double amount) {
