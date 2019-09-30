@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Account {
 
-    private int id = 0;
-    private double balance = 0;
+    protected int id = 0;
+    protected double balance = 0;
     private static double annualInterestRate = 0;
     private Date dateCreated;
 
