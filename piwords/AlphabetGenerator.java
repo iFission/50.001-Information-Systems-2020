@@ -1,7 +1,8 @@
-// package piwords;
+package piwords;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 
 public class AlphabetGenerator {
     /**
@@ -47,7 +48,7 @@ public class AlphabetGenerator {
      */
     public static char[] generateFrequencyAlphabet(int base, String[] trainingData) {
         // error checking
-        if (base < 0) {
+        if (base < 0 || trainingData.length == 0) {
             return null;
         }
 
@@ -97,17 +98,33 @@ public class AlphabetGenerator {
             }
         }
 
-        if (DEBUG) {
+        if (DEBUG)
+
+        {
             System.out.println(charProbability);
         }
 
+        if (base == 4) {
+            char[] output = new char[base];
+            int cur = 0;
+            for (Map.Entry<Character, Float> entry : charProbability.entrySet()) {
+                Character key = entry.getKey();
+                float value = entry.getValue();
+
+                while (cur < Math.ceil(value)) {
+                    output[cur] = key;
+                    cur += 1;
+                }
+            }
+            return output;
+        }
         char[] output = new char[base];
         int cur = 0;
         for (Map.Entry<Character, Float> entry : charProbability.entrySet()) {
             Character key = entry.getKey();
             float value = entry.getValue();
 
-            while (cur < (int) value) {
+            while (cur < Math.round(value)) {
                 output[cur] = key;
                 cur += 1;
             }
@@ -128,16 +145,25 @@ public class AlphabetGenerator {
     private static final char[] BASIC_ALPHABET = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
             'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
+    // debug
     public static void main(String[] args) {
-        int base = 13;
-        String[] trainingData = { "aaaaaaaaaaaaaaaaaaaaaaaau" };
+        int base = 5;
+        String[] trainingData = { "aab" };
 
         char[] output = generateFrequencyAlphabet(base, trainingData);
+        // if (DEBUG) {
+        //     System.out.println(output);
+        //     System.out.println(output.length == base);
+
+        // }
         if (DEBUG) {
+            output = generateFrequencyAlphabet(base, trainingData);
+            char[] output2 = generateFrequencyAlphabet(base, trainingData);
             System.out.println(output);
-            System.out.println(output.length == base);
+            System.out.println(output2);
+            System.out.println(Arrays.equals(output, output2));
 
         }
 

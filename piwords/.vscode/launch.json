@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - TestDigitsToStringConverter",
+      "request": "launch",
+      "mainClass": "tests.TestDigitsToStringConverter",
+      "projectName": "piwords_aca3200b"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - AlphabetGenerator",
       "request": "launch",
       "mainClass": "piwords.AlphabetGenerator"
