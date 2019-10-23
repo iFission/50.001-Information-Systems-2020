@@ -1,0 +1,5 @@
+<classpathentry kind="piwords" path="piwords" output="piwords/piwords">
+    <attributes>
+        <attribute name="test" value="true" />
+    </attributes>
+</classpathentry>
