@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestOctagonComparator",
+            "request": "launch",
+            "mainClass": "TestOctagonComparator",
+            "projectName": "pset2_c3be8ce8"
+        }
+    ]
+}
