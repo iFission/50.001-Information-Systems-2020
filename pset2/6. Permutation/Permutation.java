@@ -1,23 +1,51 @@
+import java.util.*;
 
 public class Permutation {
-    private final String in;
+    public String in;
     private ArrayList<String> a = new ArrayList<String>();
-    // additional attribute if needed
+    public int index_start;
 
-
-
-    Permutation(final String str){
+    Permutation(String str) {
         in = str;
-        // additional initialization if needed
+        index_start = 0;
+    }
+
+    public String swap(String in_str, int i, int j) {
+        char temp;
+        char[] charArray = in_str.toCharArray();
+        temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    public void permute() {
+        int length = in.length();
+        int index_end = length - 1;
+
+        if (index_start == index_end) {
+            a.add(in);
+        }
+
+        else {
+            for (int i = index_start; i <= index_end; i++) {
+
+                in = swap(in, index_start, i);
+                index_start += 1;
+                permute();
+                index_start -= 1;
+                in = swap(in, index_start, i);
+                if (a.contains(in)) {
+                    continue;
+                }
+                a.add(in);
+
+            }
+        }
 
     }
 
-    public void permute(){
-        // produce the permuted sequence of 'in' and store in 'a', recursively
-
-    }
-
-    public ArrayList<String> getA(){
+    public ArrayList<String> getA() {
         return a;
     }
 }

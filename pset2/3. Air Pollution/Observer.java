@@ -1,19 +1,19 @@
 //**SEE BELOW** modify AirPollutionAlert 
 
 //YOU DO NOT NEED TO MODIFY THIS PART OF THE CODE -------
-interface Observer{
+interface Observer {
 	void update(double airPollutionIndex);
 }
 
-class Subscriber implements Observer{
+class Subscriber implements Observer {
 	private Subject subject;
 	private String observerId;
 	public static String outputMessage = "";
-	
-	public Subscriber(String observerId, Subject subject){
-		this.subject=subject;
-		this.observerId = observerId;		
-		this.subject.register(this);		// register itself
+
+	public Subscriber(String observerId, Subject subject) {
+		this.subject = subject;
+		this.observerId = observerId;
+		this.subject.register(this); // register itself
 	}
 
 	@Override
@@ -24,19 +24,20 @@ class Subscriber implements Observer{
 	}
 }
 
-interface Subject{
+interface Subject {
 	void register(Observer o);
+
 	void unregister(Observer o);
+
 	void notifyObservers();
 }
 //-------------------------------------------------------
 
 //TODO: modify AirPollutionAlert to implement interface Subject, under Observer design pattern
-class AirPollutionAlert implements Subject{
+class AirPollutionAlert implements Subject {
 	private double airPollutionIndex;
-	
+
 	public void setAirPollutionIndex(double airPollutionIndex) {
 		this.airPollutionIndex = airPollutionIndex;
 	}
 }
-
